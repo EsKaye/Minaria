@@ -1,101 +1,99 @@
-extends Panel
-
-# Item slot properties
-var slot_index: int = -1
-var item: Dictionary = {}
-var item_count: int = 0
+extends TextureRect
 
 # UI references
-@onready var item_icon = $ItemIcon
-@onready var item_count_label = $ItemCount
+@onready var item_icon: TextureRect = $ItemIcon
+@onready var stack_label: Label = $StackLabel
+
+# Slot properties
+var slot_index: int = -1
+var slot_type: String = "inventory"
+var current_item: Dictionary = {}
 
 # Signals
-signal item_selected(slot: Node)
-signal item_dragged(slot: Node, event: InputEvent)
+signal item_clicked(item: Dictionary, slot: int, slot_type: String)
+signal item_dragged(item: Dictionary, slot: int, slot_type: String)
+signal item_dropped(slot: int, slot_type: String)
 
-func _ready():
+func _ready() -> void:
+	"""
+	Initialize item slot
+	"""
 	# Connect input events
 	gui_input.connect(_on_gui_input)
-
-func set_item(item_name: String, count: int = 1):
-	"""
-	Set the item in this slot
-	"""
-	if item_name.is_empty():
-		clear_slot()
-		return
-		
-	item = {
-		"name": item_name,
-		"count": count
-	}
-	item_count = count
 	
-	# TODO: Load item icon from resources
-	# item_icon.texture = load("res://assets/items/" + item_name + ".png")
-	
-	update_display()
+	# Clear slot
+	clear_item()
 
-func clear_slot():
-	"""
-	Clear the slot
-	"""
-	item = {}
-	item_count = 0
-	item_icon.texture = null
-	update_display()
-
-func update_display():
-	"""
-	Update the slot display
-	"""
-	if item_count > 1:
-		item_count_label.text = str(item_count)
-		item_count_label.show()
-	else:
-		item_count_label.hide()
-
-func _on_gui_input(event: InputEvent):
+func _on_gui_input(event: InputEvent) -> void:
 	"""
 	Handle input events
 	"""
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				item_selected.emit(self)
-				
-	item_dragged.emit(self, event)
-
-func _get_drag_data(_position):
-	"""
-	Handle drag start
-	"""
-	if item.is_empty():
-		return null
+				# Start drag
+				if current_item.has("id") and current_item["id"] != "":
+					emit_signal("item_dragged", current_item, slot_index, slot_type)
+			else:
+				# End drag
+				emit_signal("item_dropped", slot_index, slot_type)
 		
-	var preview = TextureRect.new()
-	preview.texture = item_icon.texture
-	preview.custom_minimum_size = Vector2(32, 32)
-	preview.expand_mode = TextureRect.EXPAND_FILL
-	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	
-	var control = Control.new()
-	control.add_child(preview)
-	preview.position = -preview.size / 2
-	
-	set_drag_preview(control)
-	return item
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			# Right click
+			if current_item.has("id") and current_item["id"] != "":
+				emit_signal("item_clicked", current_item, slot_index, slot_type)
 
-func _can_drop_data(_position, data):
+func set_item(item: Dictionary) -> void:
 	"""
-	Check if data can be dropped in this slot
+	Set item in slot
 	"""
-	return data is Dictionary and data.has("name")
+	current_item = item
+	
+	if item.has("id") and item["id"] != "":
+		# Set item icon
+		if item.has("icon"):
+			item_icon.texture = item["icon"]
+			item_icon.show()
+		else:
+			item_icon.texture = null
+			item_icon.hide()
+		
+		# Set stack count
+		if item.has("stackable") and item["stackable"] and item.has("stack_size"):
+			stack_label.text = str(item["stack_size"])
+			stack_label.show()
+		else:
+			stack_label.text = ""
+			stack_label.hide()
+	else:
+		clear_item()
 
-func _drop_data(_position, data):
+func clear_item() -> void:
 	"""
-	Handle drop data
+	Clear slot
 	"""
-	if data is Dictionary and data.has("name"):
-		# TODO: Handle item swap logic
-		pass 
+	current_item = {
+		"id": "",
+		"name": "",
+		"description": "",
+		"type": "",
+		"stack_size": 0,
+		"max_stack": 0,
+		"stats": {},
+		"icon": null
+	}
+	
+	item_icon.texture = null
+	stack_label.text = ""
+
+func get_item() -> Dictionary:
+	"""
+	Get current item
+	"""
+	return current_item
+
+func is_empty() -> bool:
+	"""
+	Check if slot is empty
+	"""
+	return current_item["id"] == "" 
