@@ -1,0 +1,237 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/character_creation.gd" id="1_2u4vx"]
+
+[node name="CharacterCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2u4vx")
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Panel" type="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Create Your Character"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CharacterPreview" type="Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PreviewContainer" type="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="Sprite2D"]
+position = Vector2(150, 200)
+scale = Vector2(2, 2)
+
+[node name="FormContainer" type="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label"]
+layout_mode = 2
+text = "Character Name:"
+
+[node name="NameInput" type="LineEdit"]
+layout_mode = 2
+placeholder_text = "Enter your character's name"
+
+[node name="ClassLabel" type="Label"]
+layout_mode = 2
+text = "Class:"
+
+[node name="ClassOption" type="OptionButton"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Warrior"
+popup/item_0/id = 0
+popup/item_1/text = "Mage"
+popup/item_1/id = 1
+popup/item_2/text = "Rogue"
+popup/item_2/id = 2
+
+[node name="AppearanceLabel" type="Label"]
+layout_mode = 2
+text = "Appearance:"
+
+[node name="AppearanceOptions" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HairStyle" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Hair Style:"
+
+[node name="OptionButton" type="OptionButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Style 1"
+popup/item_0/id = 0
+popup/item_1/text = "Style 2"
+popup/item_1/id = 1
+popup/item_2/text = "Style 3"
+popup/item_2/id = 2
+
+[node name="HairColor" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Hair Color:"
+
+[node name="OptionButton" type="OptionButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 0
+popup/item_0/text = "Black"
+popup/item_0/id = 0
+popup/item_1/text = "Brown"
+popup/item_1/id = 1
+popup/item_2/text = "Blonde"
+popup/item_2/id = 2
+popup/item_3/text = "Red"
+popup/item_3/id = 3
+
+[node name="EyeColor" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Eye Color:"
+
+[node name="OptionButton" type="OptionButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 0
+popup/item_0/text = "Blue"
+popup/item_0/id = 0
+popup/item_1/text = "Green"
+popup/item_1/id = 1
+popup/item_2/text = "Brown"
+popup/item_2/id = 2
+popup/item_3/text = "Hazel"
+popup/item_3/id = 3
+
+[node name="StatsLabel" type="Label"]
+layout_mode = 2
+text = "Starting Stats:"
+
+[node name="StatsContainer" type="GridContainer"]
+layout_mode = 2
+columns = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 5
+
+[node name="StrengthLabel" type="Label"]
+layout_mode = 2
+text = "Strength:"
+
+[node name="StrengthValue" type="Label"]
+layout_mode = 2
+text = "10"
+
+[node name="DexterityLabel" type="Label"]
+layout_mode = 2
+text = "Dexterity:"
+
+[node name="DexterityValue" type="Label"]
+layout_mode = 2
+text = "10"
+
+[node name="IntelligenceLabel" type="Label"]
+layout_mode = 2
+text = "Intelligence:"
+
+[node name="IntelligenceValue" type="Label"]
+layout_mode = 2
+text = "10"
+
+[node name="VitalityLabel" type="Label"]
+layout_mode = 2
+text = "Vitality:"
+
+[node name="VitalityValue" type="Label"]
+layout_mode = 2
+text = "10"
+
+[node name="Buttons" type="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RandomizeButton" type="Button"]
+layout_mode = 2
+text = "Randomize"
+
+[node name="CreateButton" type="Button"]
+layout_mode = 2
+text = "Create Character" 
