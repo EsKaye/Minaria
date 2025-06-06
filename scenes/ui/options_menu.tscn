@@ -1,0 +1,265 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/options_menu.gd" id="1_2k4m3"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2k4m3")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+text = "X"
+
+[node name="TabContainer" type="TabContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Graphics" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Resolution" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Graphics/Resolution"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/VBoxContainer/TabContainer/Graphics/Resolution"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1280x720"
+popup/item_1/id = 1
+popup/item_2/text = "854x480"
+popup/item_2/id = 2
+
+[node name="Fullscreen" type="CheckBox" parent="Panel/VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="VSync" type="CheckBox" parent="Panel/VBoxContainer/TabContainer/Graphics"]
+layout_mode = 2
+text = "VSync"
+
+[node name="Audio" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MasterVolume" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio/MasterVolume"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio/MasterVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="MusicVolume" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio/MusicVolume"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio/MusicVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="SFXVolume" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Audio/SFXVolume"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer/TabContainer/Audio/SFXVolume"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="Controls" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/TabContainer/Controls"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="MoveUp" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveUp"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Up"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveUp"]
+layout_mode = 2
+text = "W"
+
+[node name="MoveDown" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveDown"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Down"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveDown"]
+layout_mode = 2
+text = "S"
+
+[node name="MoveLeft" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveLeft"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Left"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveLeft"]
+layout_mode = 2
+text = "A"
+
+[node name="MoveRight" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Right"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/MoveRight"]
+layout_mode = 2
+text = "D"
+
+[node name="Interact" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Interact"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Interact"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Interact"]
+layout_mode = 2
+text = "E"
+
+[node name="Inventory" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Inventory"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Inventory"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Inventory"]
+layout_mode = 2
+text = "I"
+
+[node name="Crafting" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Crafting"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crafting"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Crafting"]
+layout_mode = 2
+text = "C"
+
+[node name="Pause" type="HBoxContainer" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Pause"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/TabContainer/Controls/ScrollContainer/VBoxContainer/Pause"]
+layout_mode = 2
+text = "ESC"
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ApplyButton" type="Button" parent="Panel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Apply"
+
+[node name="CancelButton" type="Button" parent="Panel/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Cancel" 
