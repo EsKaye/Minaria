@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://e8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialog_box.gd" id="1_2k4m3"]
+
+[node name="DialogBox" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_2k4m3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Character Name"
+horizontal_alignment = 1
+
+[node name="DialogLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "This is a sample dialog text that will be replaced with actual dialog content."
+autowrap_mode = 2
+
+[node name="ContinueLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Press SPACE to continue..."
+horizontal_alignment = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Option1" type="Button" parent="Panel/MarginContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+text = "Option 1"
+
+[node name="Option2" type="Button" parent="Panel/MarginContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+text = "Option 2"
+
+[node name="Option3" type="Button" parent="Panel/MarginContainer/VBoxContainer/OptionsContainer"]
+layout_mode = 2
+text = "Option 3" 
