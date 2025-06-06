@@ -1,0 +1,112 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/crafting_ui.gd" id="1_2k4m3"]
+
+[node name="Crafting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2k4m3")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Crafting"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel/VBoxContainer/Header"]
+layout_mode = 2
+text = "X"
+
+[node name="Content" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="RecipeList" type="ScrollContainer" parent="Panel/VBoxContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Content/RecipeList"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="CraftingArea" type="VBoxContainer" parent="Panel/VBoxContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="RecipeTitle" type="Label" parent="Panel/VBoxContainer/Content/CraftingArea"]
+layout_mode = 2
+text = "Selected Recipe"
+horizontal_alignment = 1
+
+[node name="RecipeGrid" type="GridContainer" parent="Panel/VBoxContainer/Content/CraftingArea"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="CraftButton" type="Button" parent="Panel/VBoxContainer/Content/CraftingArea"]
+layout_mode = 2
+text = "Craft"
+
+[node name="RecipeInfo" type="VBoxContainer" parent="Panel/VBoxContainer/Content/CraftingArea"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="RecipeName" type="Label" parent="Panel/VBoxContainer/Content/CraftingArea/RecipeInfo"]
+layout_mode = 2
+text = "Recipe Name"
+
+[node name="RecipeDescription" type="Label" parent="Panel/VBoxContainer/Content/CraftingArea/RecipeInfo"]
+layout_mode = 2
+text = "Recipe Description"
+autowrap_mode = 3
+
+[node name="Requirements" type="VBoxContainer" parent="Panel/VBoxContainer/Content/CraftingArea/RecipeInfo"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="RequirementsTitle" type="Label" parent="Panel/VBoxContainer/Content/CraftingArea/RecipeInfo/Requirements"]
+layout_mode = 2
+text = "Requirements:" 

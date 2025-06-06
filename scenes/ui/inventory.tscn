@@ -1,0 +1,164 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory_ui.gd" id="1_3k4m3"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3k4m3")
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button"]
+layout_mode = 2
+text = "X"
+
+[node name="HSeparator" type="HSeparator"]
+layout_mode = 2
+
+[node name="Content" type="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="InventoryGrid" type="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 5
+
+[node name="EquipmentSlots" type="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="ToolSlot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Tool"
+horizontal_alignment = 1
+
+[node name="ArmorSlot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Armor"
+horizontal_alignment = 1
+
+[node name="AccessorySlot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Accessory"
+horizontal_alignment = 1
+
+[node name="ItemInfo" type="Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ItemName" type="Label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Item Name"
+horizontal_alignment = 1
+
+[node name="ItemDescription" type="Label"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Item description goes here. This can be multiple lines long and will wrap automatically."
+autowrap_mode = 3
+
+[node name="ItemStats" type="VBoxContainer"]
+layout_mode = 2
+
+[node name="Stat1" type="Label"]
+layout_mode = 2
+text = "Stat 1: Value"
+
+[node name="Stat2" type="Label"]
+layout_mode = 2
+text = "Stat 2: Value"
+
+[node name="Stat3" type="Label"]
+layout_mode = 2
+text = "Stat 3: Value" 
