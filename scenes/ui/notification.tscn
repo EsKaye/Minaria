@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8q7v4j6y5n3q"]
+
+[ext_resource type="Script" path="res://scripts/ui/notification.gd" id="1_2k4m3"]
+
+[node name="Notification" type="Panel"]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 300.0
+offset_bottom = 60.0
+script = ExtResource("1_2k4m3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Notification"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "This is a notification message."
+autowrap_mode = 3
+horizontal_alignment = 1 
