@@ -1,108 +1,198 @@
 # Minaria Development Lessons Learned
 
-## Architecture Insights
+## Architecture and Design Patterns
 
-### Godot 4.x Best Practices
-- **Autoload System:** Use autoloads for global systems (GameManager, InputManager, etc.) to avoid singleton anti-patterns
-- **Scene Organization:** Keep scenes modular and reusable with clear component separation
-- **Script Separation:** Separate logic from presentation with proper signal communication
-- **Resource Management:** Properly manage memory and resources with pooling and caching
-- **Type Safety:** Use full GDScript type annotations for better code quality and IDE support
+### Modern Godot 4.x Best Practices
+- **Type Annotations**: Always use proper type annotations for better code clarity and IDE support
+- **Class Names**: Implement class_name for all major systems to enable type checking and autocompletion
+- **Export Groups**: Use @export_group to organize inspector properties logically
+- **Signal-Driven Design**: Prefer signals over direct function calls for loose coupling
+- **State Machines**: Implement state machines for complex systems (UI, combat, player states)
 
-### Modern Game Development Patterns
-- **State Machine Design:** Implement robust state machines for game flow and character states
-- **Event-Driven Architecture:** Use signals for loose coupling between components
-- **Component-Based Design:** Modular systems for maintainability and extensibility
-- **Data-Driven Design:** Separate data from logic for flexibility and modding support
-- **Input Buffering:** Implement input buffering for responsive controls
+### System Design Principles
+- **Single Responsibility**: Each system should have one clear purpose
+- **Dependency Injection**: Use autoloads for global systems, pass dependencies as parameters
+- **Interface Segregation**: Design systems with clear, focused interfaces
+- **Open/Closed Principle**: Systems should be open for extension, closed for modification
 
-## Technical Lessons
+## UI System Development
+
+### Layer-Based Architecture
+- **UI Layers**: Implement proper layering (BACKGROUND, WORLD, GAME, UI, OVERLAY, MODAL, TOOLTIP)
+- **Z-Index Management**: Use z_index for proper rendering order
+- **Container Organization**: Create dedicated containers for each layer
+- **State Management**: Use state machines for UI transitions
 
 ### Performance Optimization
-- **Audio Pooling:** Use audio player pools to avoid creating/destroying objects frequently
-- **Resource Caching:** Cache frequently used resources (audio, textures, etc.)
-- **Chunk Loading:** Implement efficient world segmentation for large worlds
-- **UI Responsiveness:** Keep UI updates lightweight and use proper signal communication
-- **Memory Management:** Proper resource cleanup and object pooling
-- **Asset Optimization:** Compress and optimize game assets for better performance
+- **Object Pooling**: Reuse UI elements instead of creating/destroying them
+- **Update Intervals**: Limit update frequency for non-critical UI elements
+- **Memory Management**: Properly clean up UI instances and references
+- **Animation Efficiency**: Use tweens for smooth animations
 
-### Code Quality Standards
-- **Documentation:** Maintain comprehensive inline documentation with quantum-level detail
-- **Error Handling:** Implement robust error handling and validation systems
-- **Type Safety:** Use full type annotations for better code reliability
-- **Testing:** Regular testing of core systems with automated test frameworks
-- **Version Control:** Consistent commit messages and branching strategy
-- **Code Review:** Regular code reviews to maintain quality standards
+### Accessibility Considerations
+- **Text Scaling**: Support dynamic text scaling for readability
+- **High Contrast**: Implement high contrast mode for visual accessibility
+- **Color Blind Support**: Provide alternative color schemes
+- **Input Alternatives**: Support multiple input methods
 
-### Modern GDScript Features
-- **Type Annotations:** Use full type annotations for variables, functions, and parameters
-- **Export Groups:** Organize exported properties with @export_group for better editor organization
-- **Class Names:** Use class_name for better type checking and autocompletion
-- **Signal Typing:** Use typed signals for better code safety
-- **Modern Syntax:** Use modern GDScript features like match statements and array methods
+## World Generation Insights
 
-## User Experience Insights
-- **Responsive Controls:** Implement input buffering and device switching for smooth gameplay
-- **Audio Feedback:** Provide comprehensive audio feedback for all user actions
-- **Visual Feedback:** Use visual effects and animations to enhance user experience
-- **Progressive Disclosure:** Reveal complexity gradually to avoid overwhelming users
-- **Accessibility:** Consider different player needs and preferences
-- **Performance:** Maintain consistent frame rates for smooth gameplay
+### Procedural Generation Best Practices
+- **Noise Layering**: Use multiple noise layers for realistic terrain
+- **Biome Blending**: Implement smooth transitions between biomes
+- **Performance Scaling**: Design systems that scale with world size
+- **Seed Management**: Ensure consistent generation with proper seed handling
 
-## Project Management
-- **Refactoring Strategy:** Plan comprehensive refactoring sessions to modernize codebase
-- **Feature Prioritization:** Focus on core gameplay systems first, then enhance with additional features
-- **Iterative Development:** Build and test incrementally with regular feedback loops
-- **Documentation Maintenance:** Keep documentation current with code changes
-- **Code Standards:** Establish and maintain consistent coding standards across the project
-- **Team Collaboration:** Use proper version control and code review processes
+### Chunk Management
+- **Object Pooling**: Reuse chunk objects for better performance
+- **Render Distance**: Implement configurable render distance
+- **Memory Optimization**: Load/unload chunks based on player position
+- **Threading**: Use threads for heavy generation tasks
 
-## System Design Lessons
+### Biome System Design
+- **Multi-Factor Biome Selection**: Use height, temperature, and moisture for biome determination
+- **Configurable Parameters**: Make biome parameters easily adjustable
+- **Extensible Design**: Allow easy addition of new biomes
+- **Resource Distribution**: Tie resource generation to biome types
 
-### State Management
-- **Centralized State:** Use a central game manager for overall game state
-- **State Transitions:** Implement proper state transition handling with cleanup and setup
-- **State Validation:** Validate state changes to prevent invalid states
-- **State Persistence:** Save and load state properly for game continuity
+## Combat System Architecture
 
-### Input System Design
-- **Action Mapping:** Use action-based input mapping for device independence
-- **Input Buffering:** Implement input buffering for responsive controls
-- **Device Switching:** Support automatic device switching (keyboard, gamepad, touch)
-- **Input Validation:** Validate input to prevent invalid actions
+### Turn-Based Combat Design
+- **Phase Management**: Implement clear combat phases for better control
+- **Action Queueing**: Allow action queuing for complex strategies
+- **Initiative System**: Use proper initiative calculation for turn order
+- **State Tracking**: Maintain comprehensive combat state
 
-### Audio System Design
-- **Bus Management:** Use audio buses for different audio categories (music, SFX, ambient)
-- **Audio Pooling:** Pool audio players for efficient resource management
-- **Volume Control:** Implement comprehensive volume controls for all audio categories
-- **Fade Effects:** Use fade effects for smooth audio transitions
+### Damage and Effect Systems
+- **Modular Damage Calculation**: Separate damage calculation into components
+- **Status Effect Management**: Implement flexible status effect system
+- **Critical Hit System**: Design fair and engaging critical hit mechanics
+- **Defense Calculation**: Balance attack and defense systems
 
-### Save System Design
-- **Data Validation:** Validate save data to prevent corruption
-- **Compression:** Use compression to reduce save file sizes
-- **Backup System:** Implement backup systems for save file safety
-- **Version Management:** Handle save file versioning for compatibility
+### AI Integration
+- **Behavior Trees**: Consider behavior trees for complex AI
+- **Decision Making**: Implement weighted decision systems
+- **Difficulty Scaling**: Design AI that scales with player level
+- **Performance Considerations**: Optimize AI calculations
+
+## Performance Optimization Lessons
+
+### Memory Management
+- **Object Pooling**: Essential for frequently created/destroyed objects
+- **Resource Caching**: Cache frequently used resources
+- **Memory Monitoring**: Track memory usage during development
+- **Garbage Collection**: Minimize garbage collection impact
+
+### Update Optimization
+- **Delta Time Scaling**: Use delta time for consistent performance
+- **Update Intervals**: Limit update frequency for non-critical systems
+- **Conditional Updates**: Only update when necessary
+- **Batch Processing**: Group similar operations
+
+### Rendering Optimization
+- **Culling**: Implement proper culling for off-screen objects
+- **LOD Systems**: Use level-of-detail for distant objects
+- **Texture Management**: Optimize texture usage and memory
+- **Shader Efficiency**: Write efficient shaders
+
+## Code Organization and Maintenance
+
+### File Structure
+- **Logical Grouping**: Organize files by functionality
+- **Naming Conventions**: Use consistent naming across the project
+- **Documentation**: Maintain comprehensive inline documentation
+- **Version Control**: Use meaningful commit messages
+
+### Error Handling
+- **Validation**: Validate inputs and data before processing
+- **Graceful Degradation**: Handle errors without crashing
+- **Logging**: Implement proper logging for debugging
+- **Recovery**: Provide recovery mechanisms for common errors
+
+### Testing Strategies
+- **Unit Testing**: Test individual components in isolation
+- **Integration Testing**: Test system interactions
+- **Performance Testing**: Monitor performance under load
+- **User Testing**: Get feedback from actual users
+
+## Documentation Standards
+
+### Quantum-Level Documentation
+- **Comprehensive Comments**: Document every function and class
+- **Context Information**: Explain how systems interact
+- **Usage Examples**: Provide practical usage examples
+- **Performance Notes**: Document performance considerations
+
+### Cross-Referencing
+- **System Dependencies**: Document system relationships
+- **API Documentation**: Maintain clear API documentation
+- **Change Tracking**: Track changes and their impacts
+- **Knowledge Transfer**: Ensure knowledge is preserved
+
+## Development Workflow
+
+### Iterative Development
+- **Small Increments**: Make small, testable changes
+- **Continuous Integration**: Test changes frequently
+- **Feedback Loops**: Get feedback early and often
+- **Refactoring**: Regularly refactor and improve code
+
+### Version Control
+- **Feature Branches**: Use branches for feature development
+- **Meaningful Commits**: Write clear commit messages
+- **Code Review**: Review code before merging
+- **Release Management**: Plan and manage releases
+
+### Collaboration
+- **Code Standards**: Establish and follow coding standards
+- **Communication**: Maintain clear communication channels
+- **Knowledge Sharing**: Share knowledge and best practices
+- **Documentation**: Keep documentation up to date
+
+## Platform and Compatibility
+
+### Cross-Platform Considerations
+- **Input Methods**: Support multiple input devices
+- **Screen Sizes**: Design for various screen resolutions
+- **Performance Targets**: Set realistic performance targets
+- **Platform Features**: Leverage platform-specific features appropriately
+
+### Scalability Planning
+- **Modular Design**: Design systems that can scale
+- **Configuration**: Use configuration files for easy adjustment
+- **Performance Monitoring**: Monitor performance across platforms
+- **User Feedback**: Gather feedback from different user groups
 
 ## Future Considerations
-- **Scalability:** Design systems that can grow with the project
-- **Modularity:** Create systems that can be easily modified or extended
-- **Cross-Platform:** Consider deployment across different platforms
-- **Localization:** Plan for multiple language support
-- **Modding Support:** Design systems that support user modifications
-- **Multiplayer:** Plan for potential multiplayer features
 
-## Tools and Workflow
-- **Godot Editor:** Leverage Godot's powerful editor features and modern GDScript support
-- **Version Control:** Use Git effectively for collaboration and code history
-- **Asset Management:** Organize assets logically and consistently
-- **Build Process:** Streamline the build and deployment process
-- **Performance Profiling:** Use built-in performance monitoring tools
-- **Code Analysis:** Use static analysis tools to maintain code quality
+### Technology Evolution
+- **Godot Updates**: Plan for future Godot versions
+- **Feature Deprecation**: Monitor deprecated features
+- **New Capabilities**: Stay informed about new Godot features
+- **Migration Paths**: Plan migration strategies
 
-## Refactoring Insights
-- **Incremental Refactoring:** Refactor systems incrementally to maintain stability
-- **Backward Compatibility:** Maintain backward compatibility when possible
-- **Testing During Refactoring:** Test thoroughly during refactoring to prevent regressions
-- **Documentation Updates:** Update documentation as part of the refactoring process
-- **Performance Monitoring:** Monitor performance during and after refactoring
-- **Code Review:** Review refactored code to ensure quality and consistency 
+### Community and Ecosystem
+- **Plugin Integration**: Consider third-party plugins
+- **Asset Management**: Plan for asset pipeline integration
+- **Modding Support**: Design for modding capabilities
+- **Community Standards**: Follow community best practices
+
+## Success Metrics
+
+### Development Efficiency
+- **Code Reusability**: Measure code reuse across systems
+- **Bug Frequency**: Track bug occurrence and resolution
+- **Development Speed**: Monitor feature development time
+- **Code Quality**: Assess code quality metrics
+
+### User Experience
+- **Performance**: Monitor frame rates and load times
+- **Usability**: Gather user feedback on interface and gameplay
+- **Accessibility**: Test accessibility features
+- **Engagement**: Measure user engagement and retention
+
+### Technical Excellence
+- **System Reliability**: Monitor system stability
+- **Performance Optimization**: Track performance improvements
+- **Code Maintainability**: Assess code maintainability
+- **Documentation Quality**: Evaluate documentation completeness 
